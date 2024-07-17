@@ -1,6 +1,8 @@
 'use client';
 
-import { usePathname } from "next/navigation";
+import { useState } from "react";
+
+import { usePathname, useRouter } from "next/navigation";
 // added at 1:33:20/ npm install react-use
 import { useMedia } from 'react-use';
 
@@ -11,6 +13,7 @@ import {
   SheetContent,
   SheetTrigger
 } from '@/components/ui/sheet';
+import { Button } from "@/components/ui/button";
 
 const routes = [
   {
@@ -36,7 +39,28 @@ const routes = [
 ];
 
 export const Navigation = () => {
+  const [ isOpen, setIsOpen ] = useState(false);
+
+  const router = useRouter();
   const pathname = usePathname();
+  const isMobile = useMedia('(max-width: 1024px)', false)
+
+  const onClick = (href: string) => {
+    router.push(href);
+    setIsOpen(false);
+  }
+
+  if (isMobile) {
+    return (
+      <Sheet open={isOpen} onOpenChange={setIsOpen}>
+        <SheetTrigger>
+          <Button>
+
+          </Button>
+        </SheetTrigger>
+      </Sheet>
+    )
+  }
 
   return (
     <nav className="hidden lg:flex items-center gap-x-2 overflow-x-auto">
