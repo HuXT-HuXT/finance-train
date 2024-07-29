@@ -1,0 +1,20 @@
+{
+  "version": "5",
+  "dialect": "pg",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1721839124162,
+      "tag": "0000_keen_rattler",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1722171500281,
+      "tag": "0001_ambiguous_omega_flight",
+      "breakpoints": true
+    }
+  ]
+}

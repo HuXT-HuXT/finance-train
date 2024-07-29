@@ -7,18 +7,24 @@ import { Hono } from 'hono';
 import { handle } from 'hono/vercel';
 // added at 1:02:00
 import { clerkMiddleware, getAuth } from '@hono/clerk-auth'
+// added at 2:12:31
+import accounts from './accounts';
+
 
 export const runtime = 'edge';
 
 const app = new Hono().basePath('/api');
 
-app
-  .get('/hello', 
-    (c) => {
-    return c.json({
-      message: 'Hello Next.js!',
-    });
-  })
+
+
+const routes = app
+  .route('/accounts', accounts);
+
+export const GET = handle(app);
+export const POST = handle(app);
+
+// https://hono.dev/docs/guides/rpc
+export type AppType = typeof routes;
 
 // check authorization
 // app
@@ -49,6 +55,3 @@ app
 //       test: test,
 //     })
 //   })
-
-export const GET = handle(app);
-export const POST = handle(app);
