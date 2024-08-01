@@ -9,13 +9,22 @@ import { handle } from 'hono/vercel';
 import { clerkMiddleware, getAuth } from '@hono/clerk-auth'
 // added at 2:12:31
 import accounts from './accounts';
+// import { HTTPException } from 'hono/http-exception';
 
 
 export const runtime = 'edge';
 
 const app = new Hono().basePath('/api');
 
+// removed at 2:41:00
+// app.onError((err, c) => {
+  
+//   if (err instanceof HTTPException) {
+//     return err.getResponse();
+//   }
 
+//   return c.json({ error: 'Internal error' }, 500);
+// });
 
 const routes = app
   .route('/accounts', accounts);
@@ -26,6 +35,8 @@ export const POST = handle(app);
 // https://hono.dev/docs/guides/rpc
 export type AppType = typeof routes;
 
+
+// ======= examples
 // check authorization
 // app
 //   .get('/hello', clerkMiddleware(), (c) => {
