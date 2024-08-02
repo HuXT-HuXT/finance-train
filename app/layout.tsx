@@ -7,6 +7,8 @@ import { QueryProvider } from "@/providers/query-provider";
 
 import "./globals.css";
 import { SheetProvider } from "@/providers/sheet-provider";
+// added at 3:25:25 - npx shadcn-ui@latest add sonner
+import { Toaster } from "@/components/ui/sonner";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -26,6 +28,7 @@ export default function RootLayout({
       <html lang="en">
         <body className={inter.className}>
           <QueryProvider>
+            <Toaster />
             <SheetProvider />
             {children}
           </QueryProvider>
