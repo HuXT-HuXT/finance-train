@@ -33,6 +33,8 @@ export const GET = handle(app);
 export const POST = handle(app);
 // added at 4:46:22
 export const PATCH = handle(app);
+// added at 4:53:57
+export const DELETE = handle(app);
 
 // https://hono.dev/docs/guides/rpc
 export type AppType = typeof routes;
