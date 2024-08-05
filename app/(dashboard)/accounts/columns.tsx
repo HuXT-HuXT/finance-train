@@ -8,6 +8,7 @@ import { ArrowUpDown, MoreHorizontal } from "lucide-react";
 import { client } from "@/lib/hono";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Actions } from "./actions";
 
 export type ResponseType = InferResponseType<typeof client.api.accounts.$get, 200>['data'][0];
 
@@ -47,6 +48,11 @@ export const columns: ColumnDef<ResponseType>[] = [
         </Button>
       )
     },
+  },
+  // added at 4:38:05, Actions doesn't exist at this moment, so create actions.tsx near columns.tsx
+  {
+    id: 'actions',
+    cell: ({row}) => <Actions id={row.original.id} />
   },
 ]
 
