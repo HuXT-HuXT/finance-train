@@ -9,10 +9,12 @@ import { clerkMiddleware, getAuth } from "@hono/clerk-auth";
 // added at 2:33:25 and removed at 2:40:15
 // import { HTTPException } from 'hono/http-exception';
 // added at 2:38:30
-import { eq } from "drizzle-orm";
+import { and, eq, inArray } from "drizzle-orm";
 import { zValidator } from "@hono/zod-validator";
 // added at 2:50:05 npm i @paralleldrive/cuid2
 import { createId } from '@paralleldrive/cuid2';
+// added at 4:11:05 - creating route /bulk-delete to delete accounts at this part
+import { z } from "zod";
 
 const app = new Hono()
   .get(
@@ -61,6 +63,37 @@ const app = new Hono()
       }).returning();
 
       return c.json({ data });
-    });
+    })
+  .post(
+    '/bulk-delete',
+    clerkMiddleware(),
+    zValidator(
+      'json',
+      z.object( {
+        ids: z.array(z.string()),
+      }),
+    ),
+    async (c) => {
+      const auth = getAuth(c);
+      const values = c.req.valid('json');
 
+      if(!auth?.userId) {
+        return c.json({ error: 'Unauthorized' }, 401)
+      }
+
+      const data = await db
+        .delete(accounts)
+        .where(
+          and(
+            eq(accounts.userId, auth.userId),
+            inArray(accounts.id, values.ids)
+          )
+        )
+        .returning({
+          id: accounts.id,
+        });
+      
+      return c.json({ data });
+    },
+  );
 export default app;
