@@ -30,4 +30,6 @@ create route:
       )
 
   3. add new file feature/accounts/api/use-delete-account.ts
-  4. add new file or update existing file
+  4. add new file or update existing file, in this case (delete) edit feature/accounts/components/edit-account-sheet.tsx:
+    - import import { useDeleteAccount } from '@/features/accounts/api/use-delete-account';
+    - add 
