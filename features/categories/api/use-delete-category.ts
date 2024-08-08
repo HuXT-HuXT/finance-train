@@ -1,5 +1,3 @@
-// created from copy of use-create-account.ts at 4:55:30
-
 import { toast } from "sonner";
 
 import { InferResponseType } from "hono";
@@ -9,7 +7,7 @@ import { client } from "@/lib/hono";
 
 type ResponseType = InferResponseType<typeof client.api.categories[':id']['$delete']>;
 
-export const useDeleteAccount = (id?: string) => {
+export const useDeleteCategory = (id?: string) => {
   const queryClient = useQueryClient();
 
   const mutation = useMutation<

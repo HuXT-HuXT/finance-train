@@ -36,7 +36,7 @@ create route:
     - ...
 
 ~5:05:00 - new routes
-1. add to db\schema.ts
+1. add to db/schema.ts
   export const categories = pgTable('categories', {
     id: text('id').primaryKey(),
     plaidId: text('plaid_id'),
@@ -46,15 +46,19 @@ create route:
 
   export const insertCategorySchema = createInsertSchema(categories);
 
-2. create copy of app\api\[[...route]]\accounts.ts and rename to categories.ts
+2. create copy of app/api/[[...route]]/accounts.ts and rename to categories.ts
   - export categories and insertCategorySchema
   - change all accounts with categories
 
-3. add: to app\api\[[...route]]\route.ts:
+3. add: to app/api/[[...route]]/route.ts:
   - 'import categories from "./categories"'
   - update const routes = app with .route('/categories', categories)
 
 5:10:34 - new page for categories
-1. create copy of app\(dashboard)\accounts folder and rename to categories, then all corresponding values
-2. create copy of features\accounts and rename to categories, then all corresponding values in all files
+1. create copy of app/(dashboard)/accounts folder and rename to categories, then all corresponding values
+2. create copy of features/accounts and rename to categories, then all corresponding values in all files
   ** use find to check all values and replace it with required ones. **
+3. edit providers/sheet-providers.tsx, add:
+  import { NewCategorySheet } from "@/features/categories/components/new-category-sheet";
+  import { EditCategorySheet } from "@/features/categories/components/edit-category-sheet";
+  

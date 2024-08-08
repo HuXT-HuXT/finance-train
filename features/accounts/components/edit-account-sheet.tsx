@@ -19,12 +19,12 @@ const formSchema = insertAccountSchema.pick({
 
 type FormValues = z.input<typeof formSchema>;
 
-export const EditAccountSheet = () => {  
+export const EditAccountSheet = () => {
   const { isOpen, onClose, id } = useOpenAccount();
 
   const [ConfirmDialog, confirm] = useConfirm(
     'Are you sure?',
-    'You about to delete this transaction.'
+    'You about to delete this account.'
   )
 
   const accountQuery = useGetAccount(id);
@@ -49,7 +49,7 @@ export const EditAccountSheet = () => {
       deleteMutation.mutate(undefined, {
         onSuccess: () => {
           onClose();
-        } 
+        }
       });
     }
   };
@@ -70,7 +70,7 @@ export const EditAccountSheet = () => {
               Edit Account
             </SheetTitle>
             <SheetDescription>
-              Edit am existing account.
+              Edit an existing account.
             </SheetDescription>
           </SheetHeader>
           {isLoading
@@ -87,7 +87,7 @@ export const EditAccountSheet = () => {
                 onDelete={onDelete}
               />
             )
-          }        
+          }
         </SheetContent>
       </Sheet>
     </>
