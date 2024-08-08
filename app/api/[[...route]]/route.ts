@@ -10,6 +10,8 @@ import { clerkMiddleware, getAuth } from '@hono/clerk-auth'
 // added at 2:12:31
 import accounts from './accounts';
 // import { HTTPException } from 'hono/http-exception';
+// added at 5:05:05
+import categories from './categories';
 
 
 export const runtime = 'edge';
@@ -27,7 +29,8 @@ const app = new Hono().basePath('/api');
 // });
 
 const routes = app
-  .route('/accounts', accounts);
+  .route('/accounts', accounts)
+  .route('/categories', categories);
 
 export const GET = handle(app);
 export const POST = handle(app);
