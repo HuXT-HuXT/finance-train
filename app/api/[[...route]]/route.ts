@@ -12,6 +12,8 @@ import accounts from './accounts';
 // import { HTTPException } from 'hono/http-exception';
 // added at 5:05:05
 import categories from './categories';
+// added at 5:45:53
+import transactions from './transactions';
 
 
 export const runtime = 'edge';
@@ -30,7 +32,8 @@ const app = new Hono().basePath('/api');
 
 const routes = app
   .route('/accounts', accounts)
-  .route('/categories', categories);
+  .route('/categories', categories)
+  .route('/transactions', transactions);
 
 export const GET = handle(app);
 export const POST = handle(app);
