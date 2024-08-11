@@ -9,6 +9,8 @@ import { EditAccountSheet } from "@/features/accounts/components/edit-account-sh
 // added at 5:24:29
 import { NewCategorySheet } from "@/features/categories/components/new-category-sheet";
 import { EditCategorySheet } from "@/features/categories/components/edit-category-sheet";
+// added at 6:25:51
+import { NewTransactionSheet } from "@/features/transactions/components/new-transaction-sheet";
 
 export const SheetProvider = () => {
   // this part solves hydration problem 2:59:30
@@ -23,6 +25,8 @@ export const SheetProvider = () => {
 
       <NewCategorySheet />
       <EditCategorySheet />
+
+      <NewTransactionSheet />
     </>
   )
 }

@@ -62,3 +62,13 @@ create route:
   import { NewCategorySheet } from "@/features/categories/components/new-category-sheet";
   import { EditCategorySheet } from "@/features/categories/components/edit-category-sheet";
   
+
+  main steps:
+    1. create file with endpoints in app/api/[[...route]]/accounts.ts
+    2. add this file to app/api/[[...route]]/routes.ts
+    3. create folder features/accounts, inside create:
+      - api folder for each endpoint
+      - hooks folder for open & create
+      - components folder for frontend components
+    4. create/ modify providers/sheet-provider.tsx
+    5. create folder accounts in app/(dashboard)/
