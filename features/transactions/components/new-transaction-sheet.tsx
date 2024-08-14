@@ -6,6 +6,7 @@ import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from '
 import { insertTransactionSchema } from '@/db/schema';
 import { useNewTransaction } from '@/features/transactions/hooks/use-new-transaction';
 import { useCreateTransaction } from '@/features/transactions/api/use-create-transaction';
+import { TransactionForm } from '@/features/transactions/components/transaction-form';
 
 import { useCreateCategory } from '@/features/categories/api/use-create-category';
 import { useGetCategories } from '@/features/categories/api/use-get-categories';
@@ -65,7 +66,12 @@ export const NewTransactionSheet = () => {
             Create a new transaction.
           </SheetDescription>
         </SheetHeader>
-        <p>TODO: TransactionForm</p>
+        <TransactionForm
+          onSubmit={onSubmit}
+          disabled={false}
+          categoryOptions={categoryOptions}
+          onCreateCategory={onCreateCategory}
+        />
       </SheetContent>
     </Sheet>
   )
